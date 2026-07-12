@@ -1,0 +1,114 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#060818;
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+h1{
+font-size:55px;
+color:#ff7eb3;
+text-shadow:0 0 25px #ff7eb3;
+}
+
+p{
+margin-top:20px;
+font-size:20px;
+color:#ddd;
+}
+
+button{
+margin-top:35px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:50px;
+background:#ff4d88;
+color:white;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 20px #ff4d88;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.hidden{
+display:none;
+}
+
+#heart{
+font-size:90px;
+cursor:pointer;
+margin-top:40px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+50%{
+transform:scale(1.2);
+}
+}
+
+.photos{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+padding:40px;
+}
+
+.photo img{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #ff4d88;
+box-shadow:0 0 30px #ff4d88;
+}
+
+.card{
+max-width:700px;
+margin:60px auto;
+padding:35px;
+background:rgba(255,255,255,.08);
+border-radius:25px;
+backdrop-filter:blur(12px);
+box-shadow:0 0 30px rgba(255,255,255,.2);
+}
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+opacity:.35;
+z-index:-1;
+animation:move 60s linear infinite;
+}
+
+@keyframes move{
+from{
+background-position:0 0;
+}
+to{
+background-position:1000px 1000px;
+}
+}
