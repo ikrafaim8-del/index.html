@@ -1,55 +1,97 @@
-const button = document.getElementById("startBtn");
-const surprise = document.getElementById("surprise");
+const startBtn = document.getElementById("startBtn");
+const story = document.getElementById("story");
 const heart = document.getElementById("heart");
 const letter = document.getElementById("letter");
+const gallery = document.getElementById("gallery");
 
-button.addEventListener("click", () => {
-    surprise.classList.remove("hidden");
-    button.style.display = "none";
-});
+startBtn.onclick = () => {
 
-heart.addEventListener("click", () => {
+    document.querySelector(".hero").style.display="none";
+
+    story.classList.remove("hidden");
+
+};
+
+heart.onclick = ()=>{
+
+    heart.innerHTML="💖";
+
+    story.style.display="none";
+
     letter.classList.remove("hidden");
-    heart.innerHTML = "💖";
+
     startConfetti();
+
+    setTimeout(()=>{
+
+        gallery.classList.remove("hidden");
+
+        gallery.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    },3000);
+
+}
+
+const canvas=document.getElementById("confetti");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function startConfetti(){
+
+particles=[];
+
+for(let i=0;i<250;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+
+y:-20,
+
+r:Math.random()*6+2,
+
+dx:(Math.random()-0.5)*6,
+
+dy:Math.random()*5+3,
+
+color:`hsl(${Math.random()*360},100%,60%)`
+
 });
 
-function startConfetti() {
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
+}
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+animate();
 
-    const pieces = [];
+}
 
-    for (let i = 0; i < 150; i++) {
-        pieces.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 6 + 2,
-            d: Math.random() * 150
-        });
-    }
+function animate(){
 
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-        ctx.fillStyle = "#ff4d88";
+particles.forEach(p=>{
 
-        pieces.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
+ctx.beginPath();
 
-            p.y += 2;
-            if (p.y > canvas.height) {
-                p.y = -10;
-            }
-        });
+ctx.fillStyle=p.color;
 
-        requestAnimationFrame(draw);
-    }
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 
-    draw();
+ctx.fill();
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+});
+
+requestAnimationFrame(animate);
+
 }
